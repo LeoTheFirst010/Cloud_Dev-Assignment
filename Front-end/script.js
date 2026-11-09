@@ -1,4 +1,4 @@
-const API_URL = "https://lcherull-cloudcourse-api-hnexfadcayercbc6.northcentralus-01.azurewebsites.net";
+const API_URL = "https://cloud-dev-assignment.onrender.com";
 
 const loadButton = document.getElementById("loadCourses");
 const courseList = document.getElementById("courseList");
@@ -72,5 +72,73 @@ searchForm.addEventListener("submit", async (event) => {
     } catch (error) {
         searchResult.innerHTML = "<p>Error contacting server.</p>";
         console.error(error);
+    }
+});
+
+
+// Form to add new course
+const addCourseForm = document.getElementById("addCourseForm");
+const addCourseResult = document.getElementById("addCourseResult");
+
+addCourseForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const code = document.getElementById("newCourseCode")
+        .value.trim().toUpperCase();
+
+    const name = document.getElementById("newCourseName")
+        .value.trim();
+
+    const credits = Number(
+        document.getElementById("newCourseCredits").value
+    );
+
+    // Client-side validation
+    const codePattern = /^[A-Z]{2,10}\s+[0-9]{3,5}$/;
+
+    if (
+        !codePattern.test(code) ||
+        name.length < 2 ||
+        name.length > 100 ||
+        !Number.isInteger(credits) ||
+        credits < 1 ||
+        credits > 6
+    ) {
+        addCourseResult.textContent =
+            "Please enter valid course information.";
+        return;
+    }
+
+    addCourseResult.textContent = "Adding course...";
+
+    try {
+        const response = await fetch(`${API_URL}/api/courses`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                code: code,
+                name: name,
+                credits: credits
+            })
+        });
+
+        const result = await response.json();
+
+        addCourseResult.textContent =
+            result.message || result.error || "Request completed.";
+
+        if (response.ok) {
+            addCourseForm.reset();
+
+            // Refresh the course list using the existing button
+            document.getElementById("loadCourses").click();
+        }
+
+    } catch (error) {
+        addCourseResult.textContent =
+            "Unable to contact the server.";
+        console.error("Add course error:", error);
     }
 });

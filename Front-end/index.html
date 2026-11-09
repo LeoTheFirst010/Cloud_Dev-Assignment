@@ -65,4 +65,63 @@
     <script src="script.js"></script>
 
 </body>
+
+
+
+<section class="card">
+    <h2>Add New Course</h2>
+    <p>Enter the course information below.</p>
+
+    <form id="addCourseForm">
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="newCourseCode">Course Code</label>
+                <input
+                    type="text"
+                    id="newCourseCode"
+                    placeholder="CS 4500"
+                    maxlength="20"
+                    pattern="[A-Za-z]{2,10}\s+[0-9]{3,5}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="newCourseCredits">Credit Hours</label>
+                <input
+                    type="number"
+                    id="newCourseCredits"
+                    placeholder="3"
+                    min="1"
+                    max="6"
+                    required
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="newCourseName">Course Name</label>
+            <input
+                type="text"
+                id="newCourseName"
+                placeholder="Database Systems"
+                minlength="2"
+                maxlength="100"
+                required
+            >
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Add Course</button>
+        </div>
+    </form>
+
+    <div id="addCourseResult" aria-live="polite"></div>
+
+    <button id="addAnotherCourse" type="button" hidden>
+        Add Another Course
+    </button>
+</section>
+
 </html>

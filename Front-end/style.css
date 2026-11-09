@@ -65,3 +65,51 @@ input {
 #searchResult {
     margin-top: 20px;
 }
+
+
+/* Add Course Form */
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    margin: 0;
+}
+
+.form-actions {
+    margin-top: 10px;
+}
+
+#addCourseResult {
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+#addAnotherCourse {
+    margin-top: 10px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
