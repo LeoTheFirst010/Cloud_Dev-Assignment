@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Course Information System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Course Information System</h1>
+        <p>Search and view available university courses.</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <h2>Available Courses</h2>
+
+            <p>
+                Load the current course information from the server.
+            </p>
+
+            <button id="loadCourses">
+                Load / Reload Courses
+            </button>
+
+            <div id="courseList"></div>
+        </section>
+
+
+        <section class="card">
+
+            <h2>Course Search</h2>
+
+            <form id="searchForm">
+
+                <label for="courseCode">
+                    Course Code
+                </label>
+
+                <input
+                    type="text"
+                    id="courseCode"
+                    placeholder="Example: CS 4412"
+                    required
+                >
+
+                <button type="submit">
+                    Search Course
+                </button>
+
+            </form>
+
+            <div id="searchResult"></div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
