@@ -113,3 +113,20 @@ input {
         gap: 0;
     }
 }
+
+
+.login-area {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#userGreeting {
+    font-weight: bold;
+}
+
+[hidden] {
+    display: none !important;
+}

@@ -1,4 +1,4 @@
-
+const { requireAuth } = require("./authMiddleware");
 const express = require("express");
 const cors = require("cors");
 const { sql, getPool } = require("./db");
@@ -39,7 +39,7 @@ app.get("/api/courses", async (req, res) => {
 });
 
 // POST - Search for a course
-app.post("/api/search", async (req, res) => {
+app.post("/api/search", requireAuth, async (req, res) => {
     const { courseCode } = req.body || {};
 
     if (!validCourseCode(courseCode)) {

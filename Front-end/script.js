@@ -112,16 +112,15 @@ addCourseForm.addEventListener("submit", async (event) => {
     addCourseResult.textContent = "Adding course...";
 
     try {
+        const accessToken = await getCourseAccessToken();
+
         const response = await fetch(`${API_URL}/api/courses`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`
             },
-            body: JSON.stringify({
-                code: code,
-                name: name,
-                credits: credits
-            })
+            body: JSON.stringify({ code, name, credits })
         });
 
         const result = await response.json();

@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Course Information System</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,18 +15,30 @@
     <header>
         <h1>Course Information System</h1>
         <p>Search and view available university courses.</p>
+
+        <!-- Microsoft Login -->
+        <div class="login-area">
+            <span id="userGreeting">Welcome, Guest</span>
+
+            <button id="loginButton" type="button">
+                Sign In with Microsoft
+            </button>
+
+            <button id="logoutButton" type="button" hidden>
+                Sign Out
+            </button>
+        </div>
     </header>
+
 
     <main>
 
+        <!-- AVAILABLE COURSES -->
         <section class="card">
             <h2>Available Courses</h2>
+            <p>Load the current course information from the server.</p>
 
-            <p>
-                Load the current course information from the server.
-            </p>
-
-            <button id="loadCourses">
+            <button id="loadCourses" type="button">
                 Load / Reload Courses
             </button>
 
@@ -33,15 +46,12 @@
         </section>
 
 
+        <!-- COURSE SEARCH -->
         <section class="card">
-
             <h2>Course Search</h2>
 
             <form id="searchForm">
-
-                <label for="courseCode">
-                    Course Code
-                </label>
+                <label for="courseCode">Course Code</label>
 
                 <input
                     type="text"
@@ -53,75 +63,85 @@
                 <button type="submit">
                     Search Course
                 </button>
-
             </form>
 
             <div id="searchResult"></div>
+        </section>
 
+
+        <!-- ADD NEW COURSE (LOGIN REQUIRED) -->
+        <section class="card" id="addCourseSection" hidden>
+            <h2>Add New Course</h2>
+            <p>Enter the course information below.</p>
+
+            <form id="addCourseForm">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="newCourseCode">Course Code</label>
+
+                        <input
+                            type="text"
+                            id="newCourseCode"
+                            placeholder="CS 4500"
+                            maxlength="20"
+                            pattern="[A-Za-z]{2,10}\s+[0-9]{3,5}"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newCourseCredits">Credit Hours</label>
+
+                        <input
+                            type="number"
+                            id="newCourseCredits"
+                            placeholder="3"
+                            min="1"
+                            max="6"
+                            step="1"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="newCourseName">Course Name</label>
+
+                    <input
+                        type="text"
+                        id="newCourseName"
+                        placeholder="Database Systems"
+                        minlength="2"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">
+                        Add Course
+                    </button>
+                </div>
+
+            </form>
+
+            <div id="addCourseResult" aria-live="polite"></div>
+
+            <button id="addAnotherCourse" type="button" hidden>
+                Add Another Course
+            </button>
         </section>
 
     </main>
 
+
+    <!-- JAVASCRIPT -->
+    <script src="https://alcdn.msauth.net/browser/2.35.0/js/msal-browser.min.js"></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 
 </body>
-
-
-
-<section class="card">
-    <h2>Add New Course</h2>
-    <p>Enter the course information below.</p>
-
-    <form id="addCourseForm">
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="newCourseCode">Course Code</label>
-                <input
-                    type="text"
-                    id="newCourseCode"
-                    placeholder="CS 4500"
-                    maxlength="20"
-                    pattern="[A-Za-z]{2,10}\s+[0-9]{3,5}"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="newCourseCredits">Credit Hours</label>
-                <input
-                    type="number"
-                    id="newCourseCredits"
-                    placeholder="3"
-                    min="1"
-                    max="6"
-                    required
-                >
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="newCourseName">Course Name</label>
-            <input
-                type="text"
-                id="newCourseName"
-                placeholder="Database Systems"
-                minlength="2"
-                maxlength="100"
-                required
-            >
-        </div>
-
-        <div class="form-actions">
-            <button type="submit">Add Course</button>
-        </div>
-    </form>
-
-    <div id="addCourseResult" aria-live="polite"></div>
-
-    <button id="addAnotherCourse" type="button" hidden>
-        Add Another Course
-    </button>
-</section>
-
 </html>
