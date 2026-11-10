@@ -6,7 +6,7 @@ const AUTH_CONFIG = {
 };
 
 const API_SCOPE =
-    `api://${AUTH_CONFIG.apiClientId}/access_as_user`;
+    `api://${AUTH_CONFIG.apiClientId}/access-as-user`;
 
 
 const msalApp = new msal.PublicClientApplication({

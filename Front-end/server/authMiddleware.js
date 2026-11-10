@@ -49,7 +49,7 @@ async function requireAuth(req, res, next) {
 
         const scopes = (payload.scp || "").split(" ");
 
-        if (!scopes.includes("access_as_user")) {
+        if (!scopes.includes("access-as-user")) {
             return res.status(403).json({
                 message: "You do not have permission to add courses."
             });
